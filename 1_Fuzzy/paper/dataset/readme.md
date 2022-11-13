@@ -1,2 +1,2 @@
-`raw`: Raw data from Google Form
-`clean`: Preprocessed data using notebook `01_preprocessing.ipynb`
+- `raw`: Raw data from Google Form
+- `clean`: Preprocessed data using notebook `01_preprocessing.ipynb`
