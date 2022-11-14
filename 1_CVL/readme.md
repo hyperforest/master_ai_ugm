@@ -1,0 +1,2 @@
+- `raw`: Raw data ([source](http://dl.raabindata.com/WBC/Cropped_double_labeled/))
+- `clean`: Preprocessed data using notebook `notebook.ipynb`
