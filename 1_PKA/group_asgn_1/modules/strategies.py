@@ -26,5 +26,5 @@ def maximize_house_strategy(state: CongklakState) \
     for i, action_num in enumerate(state.valid_actions()):
         next_state = state.action(action_num)
         house_beads = state.board[state.player, 0]
-        next_states.append(((-1 * house_beads, i), action_num, next_state))
+        next_states.append((-1 * house_beads, action_num, next_state))
     return next_states
