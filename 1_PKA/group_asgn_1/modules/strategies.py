@@ -2,7 +2,7 @@ import numpy as np
 
 from .state import CongklakState
 from typing import List, Tuple
-from game import Game
+from .game import Game
 
 
 def simple_strategy(state):
@@ -27,27 +27,23 @@ def maximize_house_strategy(state: CongklakState) \
     for i, action_num in enumerate(state.valid_actions()):
         next_state = state.action(action_num)
         house_beads = state.board[state.player, 0]
-        next_states.append((-1 * house_beads, action_num, next_state))
+        next_states.append(((-1 * house_beads, np.random.random()), action_num, next_state))
     return next_states
 
-def maximize_diff_score_strategy(state: CongklakState) \
-    -> List[Tuple[int, int, CongklakState]]:
-    next_states = []
-    for i, action_num in enumerate(state.valid_actions()):
-        next_state = state.action(action_num)
-        on_player = state.player
-        total_play = 2
-        while on_player != 1-state.player:
-            game = Game(
-                        policies=[maximize_house_strategy, maximize_house_strategy],
-                        initial_state=next_state,
-                        player=state.player,
-                        max_total_visited_states=total_play
-                    )
-            game.play()
-            on_player = game.final_state.player
-            total_play+=1
-        next_boards = game.final_state.board
-        diff = next_boards[state.player, 0] - next_boards[1-state.player, 0]
-        next_states.append((diff, action_num, next_state))
-    return next_states
+
+def get_max_diff(opp_strategy):
+    def maximize_diff_score_strategy(state: CongklakState):
+        next_states = []
+        for i, action_num in enumerate(state.valid_actions()):
+            next_state = state.action(action_num)
+            if next_state.player == state.player:
+                continue
+            score_list = opp_strategy(next_state)
+            score_list = sorted([x for x in score_list if x[2].player != state.player])
+            next_next_state = score_list[0][2] if len(score_list) > 0 else next_state
+            next_boards = next_next_state.board
+            diff = next_boards[state.player, 0] - next_boards[1-state.player, 0]
+            next_states.append(((-1*diff, np.random.random()), action_num, next_state))
+        return next_states
+
+    return maximize_diff_score_strategy

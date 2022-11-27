@@ -46,6 +46,11 @@ class Game:
             node = stack.pop()
             self.total_visited_states += 1
 
+            if node.state.is_terminal():
+                self.final_node = node
+                self.final_state = node.state
+                break
+
             if self.max_total_visited_states is not None:
                 if self.total_visited_states > self.max_total_visited_states:
                     self.final_node = node
@@ -58,11 +63,6 @@ class Game:
                 self._print('Last state:')
                 self._print(node.state)
                 self._print()
-
-            if node.state.is_terminal():
-                self.final_node = node
-                self.final_state = node.state
-                break
 
             next_states = self.policies[node.state.player](node.state)
             next_states = sorted(next_states, reverse=True)
@@ -91,10 +91,10 @@ class Game:
         if player_beads[0] != player_beads[1]:
             winner = np.argmax(player_beads)
             text = f'> Winner: player {winner} with {player_beads[winner]} beads!!'
-            print(text)
+            self._print(text)
 
             text = f'> Total steps to win: {self.final_node.depth}'
-            print(text)
+            self._print(text)
         else:
             self._print('> Game draw!!')
             text = f'> Total steps to draw: {self.final_node.depth}'
