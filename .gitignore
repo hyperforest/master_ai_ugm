@@ -1,3 +1,5 @@
 1_Fuzzy/paper/dataset/raw/*
-1_CVL/asgn_1/datasets/raw/*
+1_CVL/datasets/wbc/raw/*
+1_CVL/datasets/wbc/clean/*
 1_PKA/group_asgn_1/modules/__pycache__
+.vscode
