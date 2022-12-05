@@ -1,4 +1,5 @@
 import numpy as np
+from .strategies import maximize_house_strategy, get_max_diff
 
 
 class CongklakState:
@@ -62,6 +63,15 @@ class CongklakState:
                 print(board)
             print(text)
 
+    def auto(self, strategies):
+        if (strategies == 'max_diff'):
+            maximize_diff_score_strategy = get_max_diff(maximize_house_strategy)
+            next_state = sorted(maximize_diff_score_strategy(self))[0][2]
+            return next_state
+
+        elif (strategies == 'max_house'):
+            next_state = sorted(maximize_house_strategy(self))[0][2]
+            return next_state
 
     def action(self, hole):
         assert(self.is_valid_action(hole))
