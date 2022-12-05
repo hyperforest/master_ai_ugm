@@ -72,6 +72,10 @@ class CongklakState:
     #         next_state = sorted(maximize_house_strategy(self))[0][2]
     #         return next_state
 
+    def change_player(self):
+        self.player = 1 - self.player
+        return self
+
     def action(self, hole):
         assert(self.is_valid_action(hole))
 
