@@ -1,6 +1,7 @@
-1_Fuzzy/paper/notebooks/** linguist-vendored
-1_PKA/asgn_1/** linguist-vendored
-1_CVL/asgn_1/** linguist-vendored
-1_CVL/group_asgn_1/** linguist-vendored
-1_PKA/group_asgn_1/** linguist-vendored
-1_STMH/** linguist-vendored
+Fuzzy/paper/notebooks/** linguist-vendored
+PKA/asgn_1/** linguist-vendored
+CVL/asgn_1/** linguist-vendored
+CVL/group_asgn_1/** linguist-vendored
+PKA/group_asgn_1/** linguist-vendored
+STMH/** linguist-vendored
+NLP/task01/** linguist-vendored
